@@ -27,14 +27,11 @@ public class SolicitudArticulosUsuario extends JFrame {
 
         // Panel lateral con botones
         JPanel panelLateral = new JPanel();
-        panelLateral.setLayout(new GridLayout(10, 1, 10, 10));
+        panelLateral.setLayout(new GridLayout(1, 1, 10, 10));
         panelLateral.setBackground(Color.LIGHT_GRAY);
         panelLateral.setPreferredSize(new Dimension(150, getHeight()));
 
-        JButton btnBuscarArticulo = new JButton("Buscar artículo");
-
         panelLateral.add(new JLabel("  Solicitudes de artículos", SwingConstants.LEFT));
-        panelLateral.add(btnBuscarArticulo);
 
         add(panelLateral, BorderLayout.WEST);
 
@@ -43,6 +40,16 @@ public class SolicitudArticulosUsuario extends JFrame {
         JLabel lblArticulos = new JLabel("  Artículos", SwingConstants.LEFT);
         lblArticulos.setFont(new Font("Arial", Font.BOLD, 14));
         panelCentral.add(lblArticulos, BorderLayout.NORTH);
+
+        //Panel superior para búsqueda
+        JPanel PanelBusqueda = new JPanel();
+        PanelBusqueda.setLayout(new FlowLayout(FlowLayout.LEFT));
+        JTextField Busqueda = new JTextField(20);
+        JButton BotonBusqueda = new JButton("🔍");
+        PanelBusqueda.add(Busqueda);
+        PanelBusqueda.add(BotonBusqueda);
+
+        panelCentral.add(PanelBusqueda, BorderLayout.NORTH);
 
         // Crear la tabla
         String[] columnas = {"ID", "Nombre del Artículo", "Cantidad", "Estado"};
