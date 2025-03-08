@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 
 public class VisualizacionArchivos extends JFrame {
     public VisualizacionArchivos() {
-        setTitle("Solicitudes de Artículos");
+        setTitle("Visualización de archivos");
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

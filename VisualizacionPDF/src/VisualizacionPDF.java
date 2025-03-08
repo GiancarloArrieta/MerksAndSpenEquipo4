@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 
 public class VisualizacionPDF extends JFrame {
     public VisualizacionPDF() {
-        setTitle("Solicitudes de Artículos");
+        setTitle("Visualización de PDF");
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
