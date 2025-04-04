@@ -322,7 +322,7 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
             }
         });
 
-        btnActualizar.setBackground(new java.awt.Color(255, 204, 153));
+        btnActualizar.setBackground(new java.awt.Color(255, 204, 0));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar departamento");
