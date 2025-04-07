@@ -21,6 +21,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     public IniciarSesion() {
         initComponents();
         Sesion = new InicioSesion();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -88,9 +89,11 @@ public class IniciarSesion extends javax.swing.JFrame {
             }
         });
 
+        txtpaneMensaje.setEditable(false);
         txtpaneMensaje.setBackground(new java.awt.Color(204, 204, 204));
         txtpaneMensaje.setColumns(20);
         txtpaneMensaje.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtpaneMensaje.setLineWrap(true);
         txtpaneMensaje.setRows(1);
         txtpaneMensaje.setBorder(null);
         jScrollPane2.setViewportView(txtpaneMensaje);
@@ -111,7 +114,6 @@ public class IniciarSesion extends javax.swing.JFrame {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        pswContrasena.setPreferredSize(new java.awt.Dimension(64, 22));
         pswContrasena.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pswContrasenaActionPerformed(evt);
@@ -190,32 +192,6 @@ public class IniciarSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel1AncestorAdded
 
-    private void btniniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniniciarActionPerformed
-        String usuario = txtusuario.getText();
-        String contra = pswContrasena.getText();
-        if(usuario.isEmpty() || contra.isEmpty()){
-            txtpaneMensaje.setText("Usuario o contraseña incorrectos.");
-            return;
-        }
-        if(usuario.equals("ADMIN") && contra.equals("ADMIN123")){
-            AdministracionUsuarios AdminU = new AdministracionUsuarios();
-            AdminU.setVisible(true);
-            txtpaneMensaje.setText("");
-        }else{
-            try{
-                ResultSet intento = Sesion.inicioSesion(usuario);
-                if(intento.next()){
-                    if(contra.equals(intento.getString("contrasena"))){
-                        AdmistracionArticulos AA = new AdmistracionArticulos();
-                        AA.setVisible(true);
-                    }
-                }
-            }catch(SQLException e){
-            System.out.println("Error al intentar iniciar sesión:\n" + e.getMessage());
-        }
-        }
-    }//GEN-LAST:event_btniniciarActionPerformed
-
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtusuarioActionPerformed
@@ -227,6 +203,42 @@ public class IniciarSesion extends javax.swing.JFrame {
     private void pswContrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pswContrasenaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pswContrasenaActionPerformed
+
+    private void btniniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btniniciarActionPerformed
+        String usuario = txtusuario.getText();
+        String contra = pswContrasena.getText();
+        if(usuario.isEmpty() || contra.isEmpty()){
+            txtpaneMensaje.setText("Usuario o contraseña incorrectos.");
+            return;
+        }
+        if(usuario.equals("ADMIN")){
+            if(contra.equals("ADMIN123")){
+            this.setVisible(false);
+            this.dispose();
+            MenuAdmin MenuAdmin = new MenuAdmin();
+            MenuAdmin.setVisible(true);
+            txtpaneMensaje.setText("");
+            }else{
+                txtpaneMensaje.setText("Usuario o contraseña incorrectos.");
+            }
+        }else{
+            try{
+                ResultSet intento = Sesion.inicioSesion(usuario);
+                if(intento.next()){
+                    if(contra.equals(intento.getString("contrasena"))){
+                        this.setVisible(false);
+                        this.dispose();
+                        MenuUsuario MU = new MenuUsuario();
+                        MU.setVisible(true);
+                    }else{
+                        txtpaneMensaje.setText("Usuario o contraseña incorrectos.");
+                    }
+                }
+            }catch(SQLException e){
+                System.out.println("Error al intentar iniciar sesión:\n" + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btniniciarActionPerformed
 
     
     /**
