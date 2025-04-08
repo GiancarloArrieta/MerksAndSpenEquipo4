@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,7 +11,6 @@ import java.util.TimerTask;
 
 public class CRUDpedidos {
      ConexionMySQL conexion = new ConexionMySQL ();
-    Connection con;
   
     public void AgregarArticulo(int idPedido, int idArticulo, int cantidad, int idUsuario, JTable tablaSolicitud) {
         if (tablaSolicitud != null) {
@@ -22,6 +20,7 @@ public class CRUDpedidos {
         } else {
             JOptionPane.showMessageDialog(null, "❌ Error: La tabla solicitud no está disponible.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
     }
 
    public void GenerarPedido(JTable tabla) {

@@ -48,14 +48,14 @@ public class CRUDArticulos {
         }
     }
     
-    public boolean actualizarArticulo(String id, String nombre, int cantidad, String categoria){
+    public boolean actualizarArticulo(int id, String nombre, int cantidad, String categoria){
         String sqlUpdate = "update articulos set nombre = ?, cantidad = ?, categoria = ? where id = ?;";
         try{
             PreparedStatement ps = conexion.prepareStatement(sqlUpdate);
             ps.setString(1, nombre);
             ps.setInt(2, cantidad);
             ps.setString(3, categoria);
-            ps.setString(4, id);
+            ps.setInt(4, id);
             return ps.executeUpdate()>0;
         }catch(SQLException exception){
             System.out.println("Error al intentar insertar: " + exception.getMessage());

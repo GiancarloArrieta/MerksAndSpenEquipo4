@@ -10,8 +10,11 @@
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.NumberFormatter;
 
 public class AdministracionUsuarios extends javax.swing.JFrame {
 
@@ -25,6 +28,16 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         crud = new CRUDDepartamentos();
         this.setLocationRelativeTo(null);
         this.setSize(550, 450);
+        
+        JFormattedTextField txt1 = ((JSpinner.NumberEditor) spinIDConsulta.getEditor()).getTextField();
+        JFormattedTextField txt2 = ((JSpinner.NumberEditor) spinIDActualizar.getEditor()).getTextField();
+        JFormattedTextField txt3 = ((JSpinner.NumberEditor) spinIDEliminar.getEditor()).getTextField();
+        NumberFormatter formatter1 = (NumberFormatter) txt1.getFormatter();
+        NumberFormatter formatter2 = (NumberFormatter) txt2.getFormatter();
+        NumberFormatter formatter3 = (NumberFormatter) txt3.getFormatter();
+        formatter1.setAllowsInvalid(false);
+        formatter2.setAllowsInvalid(false);
+        formatter3.setAllowsInvalid(false);
     }
 
     /**
@@ -51,12 +64,12 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        txtIDConsulta = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDepartamentosConsulta = new javax.swing.JTable();
         btnBuscarIDConsulta = new javax.swing.JButton();
         btnMostrarTodos = new javax.swing.JButton();
         btnRegresar1 = new javax.swing.JButton();
+        spinIDConsulta = new javax.swing.JSpinner();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -67,21 +80,20 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         txtContrasenaActualizacion = new javax.swing.JTextField();
         btnActualizar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        txtIDActualizacion = new javax.swing.JTextField();
         btnRegresar2 = new javax.swing.JButton();
+        spinIDActualizar = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDepartamentosEliminar = new javax.swing.JTable();
         btnBuscarIDEliminar = new javax.swing.JButton();
-        txtIDEliminar = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         btnRegresar4 = new javax.swing.JButton();
+        spinIDEliminar = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(550, 430));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -172,16 +184,6 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         jSeparator2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 106, 493, -1));
 
-        txtIDConsulta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtIDConsulta.setForeground(new java.awt.Color(102, 102, 102));
-        txtIDConsulta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtIDConsulta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDConsultaActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtIDConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 83, -1));
-
         tblDepartamentosConsulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -236,6 +238,9 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         });
         jPanel2.add(btnRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 110, -1));
 
+        spinIDConsulta.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100000, 1));
+        jPanel2.add(spinIDConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 120, 30));
+
         jTabbedPane1.addTab("Consulta", jPanel2);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -266,7 +271,7 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
                 txtUsuarioActualizacionActionPerformed(evt);
             }
         });
-        jPanel4.add(txtUsuarioActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 284, -1));
+        jPanel4.add(txtUsuarioActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 280, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -279,7 +284,7 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
                 txtContrasenaActualizacionActionPerformed(evt);
             }
         });
-        jPanel4.add(txtContrasenaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 284, -1));
+        jPanel4.add(txtContrasenaActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 280, -1));
 
         btnActualizar.setBackground(new java.awt.Color(255, 204, 0));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -299,13 +304,6 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         jLabel13.setText("ID:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 191, -1));
 
-        txtIDActualizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActualizacionActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtIDActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 284, -1));
-
         btnRegresar2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnRegresar2.setText("Regresar");
         btnRegresar2.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +312,9 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnRegresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 110, -1));
+
+        spinIDActualizar.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100000, 1));
+        jPanel4.add(spinIDActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 280, 30));
 
         jTabbedPane1.addTab("Actualización", jPanel4);
 
@@ -364,16 +365,6 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         });
         jPanel3.add(btnBuscarIDEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(29, 135, -1, -1));
 
-        txtIDEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtIDEliminar.setForeground(new java.awt.Color(102, 102, 102));
-        txtIDEliminar.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtIDEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDEliminarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(txtIDEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 135, 83, -1));
-
         btnEliminar.setBackground(new java.awt.Color(255, 102, 102));
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
@@ -397,6 +388,9 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnRegresar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 110, -1));
+
+        spinIDEliminar.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100000, 1));
+        jPanel3.add(spinIDEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 120, 30));
 
         jTabbedPane1.addTab("Eliminación", jPanel3);
 
@@ -434,24 +428,20 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void txtIDConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDConsultaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDConsultaActionPerformed
-
     private void btnBuscarIDConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIDConsultaActionPerformed
-        String idText = txtIDConsulta.getText();
-        if(idText.isEmpty()){
+        int id = (int)spinIDConsulta.getValue();
+        if(spinIDConsulta.getValue() == null){
             JOptionPane.showMessageDialog(null, "ERROR: Es necesario ingresar un ID para generar una consulta." , "Consulta de departamento", JOptionPane.QUESTION_MESSAGE);
             return;
         }
         try{
-            ResultSet consulta = crud.obtenerDepartamentoID(Integer.parseInt(idText));
+            ResultSet consulta = crud.obtenerDepartamentoID(id);
             DefaultTableModel modelo = (DefaultTableModel)tblDepartamentosConsulta.getModel();
             modelo.setRowCount(0);
             if(consulta.next()){
                 modelo.addRow(new Object[]{consulta.getInt("id"), consulta.getString("nombre"), consulta.getString("contrasena")});
             }
-            txtIDConsulta.setText("");
+            spinIDConsulta.setValue(0);
         }catch(SQLException e){
             System.out.println("Error al intentar llenar la tabla:\n" + e.getMessage());
         }
@@ -472,31 +462,27 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMostrarTodosActionPerformed
 
     private void btnBuscarIDEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIDEliminarActionPerformed
-        String idText = txtIDEliminar.getText();
-        if(idText.isEmpty()){
+        int id = (int)spinIDEliminar.getValue();
+        if(spinIDConsulta.getValue() == null){
             JOptionPane.showMessageDialog(null, "ERROR: Es necesario ingresar un ID para generar una consulta." , "Consulta de departamento", JOptionPane.QUESTION_MESSAGE);
             return;
         }
         try{
-            ResultSet consulta = crud.obtenerDepartamentoID(Integer.parseInt(idText));
+            ResultSet consulta = crud.obtenerDepartamentoID(id);
             DefaultTableModel modelo = (DefaultTableModel)tblDepartamentosEliminar.getModel();
             modelo.setRowCount(0);
             if(consulta.next()){
                 modelo.addRow(new Object[]{consulta.getInt("id"), consulta.getString("nombre"), consulta.getString("contrasena")});
             }
-            txtIDConsulta.setText("");
+            spinIDEliminar.setValue(0);
         }catch(SQLException e){
             System.out.println("Error al intentar llenar la tabla:\n" + e.getMessage());
         }
     }//GEN-LAST:event_btnBuscarIDEliminarActionPerformed
 
-    private void txtIDEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDEliminarActionPerformed
-
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        String id = txtIDEliminar.getText();
-        if(id.isEmpty()){
+        int id = (int)spinIDEliminar.getValue();
+        if(spinIDConsulta.getValue() == null){
             JOptionPane.showMessageDialog(null, "ERROR: Es necesario ingresar un nombre para eliminar un usuario." , "Eliminación de departamento", JOptionPane.QUESTION_MESSAGE);
             return;
         }
@@ -507,7 +493,7 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
             boolean status = crud.eliminarDepartamento(id);
             if(status){
             JOptionPane.showMessageDialog(null, "El usuario se eliminó exitosamente", "Eliminación de departamento", JOptionPane.INFORMATION_MESSAGE);
-            txtIDEliminar.setText("");
+            spinIDEliminar.setValue(0);
         }else{
             JOptionPane.showMessageDialog(null, "ERROR: El usuario no fue eliminó debido a un error.", "Eliminación de departamento", JOptionPane.ERROR_MESSAGE);
         }
@@ -525,11 +511,11 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContrasenaActualizacionActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        String id = txtIDActualizacion.getText();
+        int id = (int)spinIDActualizar.getValue();
         String nombre = txtUsuarioActualizacion.getText();
         String contrasena = txtContrasenaActualizacion.getText();
         
-        if(id.isEmpty() || nombre.isEmpty() || contrasena.isEmpty()){
+        if(nombre.isEmpty() || contrasena.isEmpty()){
             JOptionPane.showMessageDialog(null, "ERROR: Todos los campos son obligatorios.", "Actualización de departamento", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -543,7 +529,7 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
             boolean status = crud.actualizarDepartamento(id, nombre, contrasena);
             if(status){
             JOptionPane.showMessageDialog(null, "El usuario se actualizó exitosamente", "Actualización de departamento", JOptionPane.INFORMATION_MESSAGE);
-            txtIDActualizacion.setText("");
+            spinIDActualizar.setValue(0);
             txtUsuarioActualizacion.setText("");
             txtContrasenaActualizacion.setText("");
         }else{
@@ -553,10 +539,6 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
             return;
         }        
     }//GEN-LAST:event_btnActualizarActionPerformed
-
-    private void txtIDActualizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActualizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActualizacionActionPerformed
 
     private void btnRegresar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresar4ActionPerformed
         regresar();
@@ -651,13 +633,13 @@ public class AdministracionUsuarios extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JSpinner spinIDActualizar;
+    private javax.swing.JSpinner spinIDConsulta;
+    private javax.swing.JSpinner spinIDEliminar;
     private javax.swing.JTable tblDepartamentosConsulta;
     private javax.swing.JTable tblDepartamentosEliminar;
     private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtContrasenaActualizacion;
-    private javax.swing.JTextField txtIDActualizacion;
-    private javax.swing.JTextField txtIDConsulta;
-    private javax.swing.JTextField txtIDEliminar;
     private javax.swing.JTextField txtUsuario;
     private javax.swing.JTextField txtUsuarioActualizacion;
     // End of variables declaration//GEN-END:variables

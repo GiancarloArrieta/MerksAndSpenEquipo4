@@ -40,9 +40,12 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         cargarCategorias(boxCategoriasActualizacion);
         crud = new CRUDArticulos();
         
-        JFormattedTextField txt = ((JSpinner.NumberEditor) jSpinner1.getEditor()).getTextField();
-        NumberFormatter formatter = (NumberFormatter) txt.getFormatter();
-        formatter.setAllowsInvalid(false);
+        JFormattedTextField txt1 = ((JSpinner.NumberEditor) spinID.getEditor()).getTextField();
+        JFormattedTextField txt2 = ((JSpinner.NumberEditor) spinCantidad.getEditor()).getTextField();
+        NumberFormatter formatter1 = (NumberFormatter) txt1.getFormatter();
+        NumberFormatter formatter2 = (NumberFormatter) txt2.getFormatter();
+        formatter1.setAllowsInvalid(false);
+        formatter2.setAllowsInvalid(false);
         
         this.setLocationRelativeTo(null);
     }
@@ -87,11 +90,11 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         btnActualizar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        txtIDActualizacion = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         boxCategoriasActualizacion = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        spinID = new javax.swing.JSpinner();
         btnRegresar2 = new javax.swing.JButton();
+        spinCantidad = new javax.swing.JSpinner();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -312,13 +315,6 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         jLabel13.setText("ID:");
         jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 191, -1));
 
-        txtIDActualizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActualizacionActionPerformed(evt);
-            }
-        });
-        jPanel4.add(txtIDActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 230, -1));
-
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -328,8 +324,8 @@ public class AdministracionArticulos extends javax.swing.JFrame {
         boxCategoriasActualizacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel4.add(boxCategoriasActualizacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 230, -1));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100000, 1));
-        jPanel4.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 230, -1));
+        spinID.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100000, 1));
+        jPanel4.add(spinID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 230, -1));
 
         btnRegresar2.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnRegresar2.setText("Regresar");
@@ -339,6 +335,9 @@ public class AdministracionArticulos extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnRegresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 110, -1));
+
+        spinCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100000, 1));
+        jPanel4.add(spinCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 230, -1));
 
         jTabbedPane4.addTab("Actualización", jPanel4);
 
@@ -504,12 +503,12 @@ public class AdministracionArticulos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActualizacionActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        String id = txtIDActualizacion.getText();
+        int id = (int)spinID.getValue();
         String nombre = txtNombreActualizacion.getText();
-        int cantidad = (int)jSpinner1.getValue();
+        int cantidad = (int)spinCantidad.getValue();
         String categoria = (String)boxCategoriasActualizacion.getSelectedItem();
 
-        if(id.isEmpty() || nombre.isEmpty()){
+        if(nombre.isEmpty()){
             JOptionPane.showMessageDialog(null, "ERROR: Todos los campos son obligatorios.", "Actualización de artículo", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -524,9 +523,9 @@ public class AdministracionArticulos extends javax.swing.JFrame {
             boolean status = crud.actualizarArticulo(id, nombre, cantidad, categoria);
             if(status){
                 JOptionPane.showMessageDialog(null, "El artículo se actualizó exitosamente", "Actualización de artículo", JOptionPane.INFORMATION_MESSAGE);
-                txtIDActualizacion.setText("");
+                spinID.setValue(0);
                 txtNombreActualizacion.setText("");
-                jSpinner1.setValue(0);
+                spinCantidad.setValue(0);
             }else{
                 JOptionPane.showMessageDialog(null, "ERROR: El usuario no fue guardado debido a un error.", "Actualización de departamento", JOptionPane.ERROR_MESSAGE);
             }
@@ -534,10 +533,6 @@ public class AdministracionArticulos extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnActualizarActionPerformed
-
-    private void txtIDActualizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActualizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActualizacionActionPerformed
 
     private void btnBuscarNombreEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNombreEliminarActionPerformed
         String nombre = txtNombreEliminar.getText();
@@ -596,7 +591,7 @@ public class AdministracionArticulos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresar2ActionPerformed
 
     private void btnRegresar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresar3ActionPerformed
-        // TODO add your handling code here:
+        regresar();
     }//GEN-LAST:event_btnRegresar3ActionPerformed
 
     private void regresar(){
@@ -679,12 +674,12 @@ public class AdministracionArticulos extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane4;
+    private javax.swing.JSpinner spinCantidad;
+    private javax.swing.JSpinner spinID;
     private javax.swing.JTable tblArticulosConsulta;
     private javax.swing.JTable tblArticulosEliminar;
     private javax.swing.JTextField txtArticulo;
-    private javax.swing.JTextField txtIDActualizacion;
     private javax.swing.JTextField txtNombreActualizacion;
     private javax.swing.JTextField txtNombreConsulta;
     private javax.swing.JTextField txtNombreEliminar;

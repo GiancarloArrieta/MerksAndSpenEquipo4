@@ -48,13 +48,13 @@ public class CRUDDepartamentos {
         }
     }
     
-    public boolean actualizarDepartamento(String id, String nombre, String contrasena){
+    public boolean actualizarDepartamento(int id, String nombre, String contrasena){
         String sqlUpdate = "update usuarios set nombre = ?, contrasena = ? where id = ?;";
         try{
             PreparedStatement ps = conexion.prepareStatement(sqlUpdate);
             ps.setString(1, nombre);
             ps.setString(2, contrasena);
-            ps.setString(3, id);
+            ps.setInt(3, id);
             return ps.executeUpdate()>0;
         }catch(SQLException exception){
             System.out.println("Error al intentar insertar: " + exception.getMessage());
@@ -62,11 +62,11 @@ public class CRUDDepartamentos {
         }
     }
     
-    public boolean eliminarDepartamento(String id){
+    public boolean eliminarDepartamento(int id){
         String sqlDelete = "delete from usuarios where id = ?;";
         try{
             PreparedStatement ps = conexion.prepareStatement(sqlDelete);
-            ps.setString(1, id);
+            ps.setInt(1, id);
             return ps.executeUpdate()>0;
         }catch(SQLException exception){
             System.out.println("Error al intentar eliminar: " + exception.getMessage());
