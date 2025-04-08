@@ -34,6 +34,7 @@ public class MenuAdmin extends javax.swing.JFrame {
         btnCerrarSesion = new javax.swing.JButton();
         btnAdminArticulos = new javax.swing.JButton();
         btnAdminInventario = new javax.swing.JButton();
+        btnAdminInventario1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,6 +107,15 @@ public class MenuAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnAdminInventario1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdminInventario1.setText("Gestión de pedidos");
+        btnAdminInventario1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdminInventario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminInventario1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,7 +129,8 @@ public class MenuAdmin extends javax.swing.JFrame {
                     .addComponent(btnAdminUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdminArticulos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAdminInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdminInventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAdminInventario1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,9 +148,11 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(btnAdminArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdminInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdminInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,6 +205,13 @@ public class MenuAdmin extends javax.swing.JFrame {
         GI.setVisible(true);
     }//GEN-LAST:event_btnAdminInventarioActionPerformed
 
+    private void btnAdminInventario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminInventario1ActionPerformed
+        this.setVisible(false);
+        this.dispose();
+        GestionPedidos GP = new GestionPedidos();
+        GP.setVisible(true);
+    }//GEN-LAST:event_btnAdminInventario1ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -231,6 +251,7 @@ public class MenuAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminArticulos;
     private javax.swing.JButton btnAdminInventario;
+    private javax.swing.JButton btnAdminInventario1;
     private javax.swing.JButton btnAdminUsuarios;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JLabel jLabel1;
