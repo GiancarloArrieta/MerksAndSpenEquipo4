@@ -8,6 +8,7 @@
  * @author Elin
  */
 
+import org.jfree.chart.ChartPanel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
@@ -45,6 +46,8 @@ public class GestionInventario extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         btnRegresar1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnGrafica = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -143,6 +146,30 @@ public class GestionInventario extends javax.swing.JFrame {
         });
         jPanel3.add(btnRegresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 110, -1));
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 470, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 190, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 470, 190));
+
+        btnGrafica.setBackground(new java.awt.Color(153, 153, 255));
+        btnGrafica.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGrafica.setForeground(new java.awt.Color(255, 255, 255));
+        btnGrafica.setText("Mostrar gráfica");
+        btnGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficaActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, -1, -1));
+
         jTabbedPane1.addTab("Gráficas", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
@@ -214,6 +241,17 @@ public class GestionInventario extends javax.swing.JFrame {
         regresar();
     }//GEN-LAST:event_btnRegresar2ActionPerformed
 
+    private void btnGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaActionPerformed
+         jPanel1.removeAll();
+            jPanel1.setLayout(new java.awt.BorderLayout());
+
+            Grafica grafico = new Grafica(); // Si tu clase se llama así, está bien
+            ChartPanel chartPanel = grafico.obtenerGrafico();
+
+            jPanel1.add(chartPanel, java.awt.BorderLayout.CENTER);
+            jPanel1.validate();
+    }//GEN-LAST:event_btnGraficaActionPerformed
+
     private void regresar(){
         this.setVisible(false);
         this.dispose();
@@ -257,6 +295,7 @@ public class GestionInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGrafica;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRegresar1;
@@ -267,6 +306,7 @@ public class GestionInventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

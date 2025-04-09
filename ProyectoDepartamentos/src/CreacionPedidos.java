@@ -485,9 +485,7 @@ public class CreacionPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarPedidoActionPerformed
 
     private void MostrarInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarInventarioActionPerformed
-        CRUDpedidos inventario = new CRUDpedidos();
-        inventario.mostrarInventario(jTableInventario);
-        inventario.iniciarActualizacionAutomatica(jTableInventario, 10); // Se actualiza cada 10 segundos
+        crud.mostrarInventario(jTableInventario);
     }//GEN-LAST:event_MostrarInventarioActionPerformed
 
     private void btnMostrarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarPedidosActionPerformed

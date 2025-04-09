@@ -150,9 +150,15 @@ public class MenuAdmin extends javax.swing.JFrame {
                 .addComponent(btnAdminInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdminInventario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
+>>>>>>> Stashed changes
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,10 +212,13 @@ public class MenuAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminInventarioActionPerformed
 
     private void btnAdminInventario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminInventario1ActionPerformed
+
         this.setVisible(false);
         this.dispose();
         GestionPedidos GP = new GestionPedidos();
         GP.setVisible(true);
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdminInventario1ActionPerformed
 
     
