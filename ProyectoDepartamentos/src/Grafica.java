@@ -15,8 +15,8 @@ public class Grafica {
         if (conn != null) {
             String query = """
                 SELECT
-                    Articulos.Nombre AS NombreDelArticulo,
-                    SUM(ArticulosPedidos.cantidad) AS CantidadTotalSolicitada
+                    Articulos.Nombre AS Nombre,
+                    SUM(ArticulosPedidos.cantidad) AS Cantidad
                 FROM 
                     ArticulosPedidos
                 INNER JOIN 
@@ -26,7 +26,7 @@ public class Grafica {
                 HAVING
                 	SUM(ArticulosPedidos.cantidad) > 100
                 ORDER BY 
-                    CantidadTotalSolicitada DESC;
+                    Cantidad DESC;
             """;
 
             try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
