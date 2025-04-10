@@ -70,7 +70,7 @@ public class CRUDpedidos {
 
                 public void mostrarInventario(JTable tablaInventario) {
                     try{
-                        String sql = "SELECT * FROM Articulos"; // Cambia 'Inventario' al nombre de tu tabla
+                        String sql = "SELECT id, nombre, categoria FROM Articulos"; // Cambia 'Inventario' al nombre de tu tabla
                         try (PreparedStatement ps = conexion.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
                             DefaultTableModel modelo = (DefaultTableModel) tablaInventario.getModel();
                             modelo.setRowCount(0); // Limpia la tabla antes de actualizar
@@ -78,11 +78,10 @@ public class CRUDpedidos {
                             while (rs.next()) {
                                 int idArticulo = rs.getInt("Id");
                                 String nombre = rs.getString("Nombre");
-                                int cantidad = rs.getInt("Cantidad");
                                 String categoria = rs.getString("Categoria");
                              
 
-                                modelo.addRow(new Object[]{idArticulo, nombre, cantidad, categoria});
+                                modelo.addRow(new Object[]{idArticulo, nombre, categoria});
                             }
                         }
                     } catch (SQLException e) {

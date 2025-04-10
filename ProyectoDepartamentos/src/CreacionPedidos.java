@@ -229,20 +229,16 @@ public class CreacionPedidos extends javax.swing.JFrame {
 
         jTableInventario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "ID", "Producto", "Cantidad", "Categoría"
+                "ID", "Producto", "Categoría"
             }
         ));
         jScrollPane2.setViewportView(jTableInventario);
-        if (jTableInventario.getColumnModel().getColumnCount() > 0) {
-            jTableInventario.getColumnModel().getColumn(2).setHeaderValue("Fecha");
-            jTableInventario.getColumnModel().getColumn(3).setHeaderValue("Categoría");
-        }
 
         MostrarInventario.setText("Refrescar inventario");
         MostrarInventario.addActionListener(new java.awt.event.ActionListener() {

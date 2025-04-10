@@ -16,10 +16,12 @@ import javax.swing.table.DefaultTableModel;
 public class GestionInventario extends javax.swing.JFrame {
 
     private CRUDArticulos crud = new CRUDArticulos();
+    private GraficaReporte reporte;
     
     public GestionInventario() {
         initComponents();
         crud.obtenerArticulos();
+        reporte = new GraficaReporte();
         this.setLocationRelativeTo(null);
     }
 
@@ -53,6 +55,9 @@ public class GestionInventario extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         btnRegresar2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,7 +167,7 @@ public class GestionInventario extends javax.swing.JFrame {
         btnGrafica.setBackground(new java.awt.Color(153, 153, 255));
         btnGrafica.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGrafica.setForeground(new java.awt.Color(255, 255, 255));
-        btnGrafica.setText("Mostrar gráfica");
+        btnGrafica.setText("Refrescar gráfica");
         btnGrafica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGraficaActionPerformed(evt);
@@ -198,6 +203,33 @@ public class GestionInventario extends javax.swing.JFrame {
             }
         });
         jPanel4.add(btnRegresar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 110, -1));
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setText("Reporte de pedidos ordenados por departamento");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 310, 40));
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setText("Reporte de inventario completo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 230, 40));
+
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setText("Reporte de pedidos ordenados por fecha");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 270, 40));
 
         jTabbedPane1.addTab("Reportes", jPanel4);
 
@@ -245,12 +277,24 @@ public class GestionInventario extends javax.swing.JFrame {
          jPanel1.removeAll();
             jPanel1.setLayout(new java.awt.BorderLayout());
 
-            Grafica grafico = new Grafica(); // Si tu clase se llama así, está bien
+            GraficaReporte grafico = new GraficaReporte(); // Si tu clase se llama así, está bien
             ChartPanel chartPanel = grafico.obtenerGrafico();
 
             jPanel1.add(chartPanel, java.awt.BorderLayout.CENTER);
             jPanel1.validate();
     }//GEN-LAST:event_btnGraficaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        reporte.PDFPedidosDepartamento();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        reporte.PDFPedidosFecha();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        reporte.PDFInventario();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void regresar(){
         this.setVisible(false);
@@ -300,6 +344,9 @@ public class GestionInventario extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnRegresar1;
     private javax.swing.JButton btnRegresar2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
