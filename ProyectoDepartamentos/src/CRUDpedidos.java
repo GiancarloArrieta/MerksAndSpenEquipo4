@@ -89,16 +89,6 @@ public class CRUDpedidos {
                     }
                 }
 
-                public void iniciarActualizacionAutomatica(JTable tablaInventario, int intervaloSegundos) {
-                    Timer timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            mostrarInventario(tablaInventario);
-                        }
-                    }, 0, intervaloSegundos * 1000); // Se actualiza cada X segundos
-                }
-
     public void mostrarPedidos(JTable jTable1) {
         try{
             String sql = "SELECT \n" +

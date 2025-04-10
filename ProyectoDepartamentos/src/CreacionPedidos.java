@@ -470,7 +470,9 @@ public class CreacionPedidos extends javax.swing.JFrame {
 
             if(status){
                 JOptionPane.showMessageDialog(null, "El artículo se insertó en el pedido exitosamente", "Registro de pedido", JOptionPane.INFORMATION_MESSAGE);
-                txtidUsuario.setText("");
+                txtIdPedido.setText("");
+                txtidArticulo.setText("");
+                txtcantidad.setText("");
             }else{
                 JOptionPane.showMessageDialog(null, "ERROR: El artículo no fue guardado debido a un error.", "Registro de pedido", JOptionPane.ERROR_MESSAGE);
             }

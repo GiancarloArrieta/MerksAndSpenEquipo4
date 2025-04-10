@@ -12,6 +12,7 @@ import org.jfree.chart.ChartPanel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 public class GestionInventario extends javax.swing.JFrame {
 
@@ -43,6 +44,8 @@ public class GestionInventario extends javax.swing.JFrame {
         tblArticulosConsulta = new javax.swing.JTable();
         btnRefrescar = new javax.swing.JButton();
         btnRegresar = new javax.swing.JButton();
+        btnBuscarConsulta = new javax.swing.JButton();
+        txtNombreConsulta = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -105,13 +108,13 @@ public class GestionInventario extends javax.swing.JFrame {
         btnRefrescar.setBackground(new java.awt.Color(153, 153, 255));
         btnRefrescar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRefrescar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRefrescar.setText("Refrescar");
+        btnRefrescar.setText("Mostrar todo");
         btnRefrescar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefrescarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 220, -1));
+        jPanel2.add(btnRefrescar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 110, -1));
 
         btnRegresar.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         btnRegresar.setText("Regresar");
@@ -121,6 +124,27 @@ public class GestionInventario extends javax.swing.JFrame {
             }
         });
         jPanel2.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 110, -1));
+
+        btnBuscarConsulta.setBackground(new java.awt.Color(153, 153, 153));
+        btnBuscarConsulta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscarConsulta.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscarConsulta.setText("Buscar por nombre");
+        btnBuscarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarConsultaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBuscarConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
+
+        txtNombreConsulta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtNombreConsulta.setForeground(new java.awt.Color(102, 102, 102));
+        txtNombreConsulta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombreConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreConsultaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtNombreConsulta, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 180, -1));
 
         jTabbedPane1.addTab("Consulta", jPanel2);
 
@@ -296,6 +320,29 @@ public class GestionInventario extends javax.swing.JFrame {
         reporte.PDFInventario();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnBuscarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarConsultaActionPerformed
+        String nombre = txtNombreConsulta.getText();
+        if(nombre.isEmpty()){
+            JOptionPane.showMessageDialog(null, "ERROR: Es necesario ingresar un nombre para generar una consulta." , "Consulta de artículo", JOptionPane.QUESTION_MESSAGE);
+            return;
+        }
+        try{
+            ResultSet consulta = crud.obtenerArticuloNombre(nombre);
+            DefaultTableModel modelo = (DefaultTableModel)tblArticulosConsulta.getModel();
+            modelo.setRowCount(0);
+            if(consulta.next()){
+                modelo.addRow(new Object[]{consulta.getInt("id"), consulta.getString("nombre"), consulta.getInt("cantidad"), consulta.getString("categoria")});
+            }
+            txtNombreConsulta.setText("");
+        }catch(SQLException e){
+            System.out.println("Error al intentar llenar la tabla:\n" + e.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarConsultaActionPerformed
+
+    private void txtNombreConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreConsultaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreConsultaActionPerformed
+
     private void regresar(){
         this.setVisible(false);
         this.dispose();
@@ -339,6 +386,7 @@ public class GestionInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscarConsulta;
     private javax.swing.JButton btnGrafica;
     private javax.swing.JButton btnRefrescar;
     private javax.swing.JButton btnRegresar;
@@ -363,5 +411,6 @@ public class GestionInventario extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tblArticulosConsulta;
+    private javax.swing.JTextField txtNombreConsulta;
     // End of variables declaration//GEN-END:variables
 }

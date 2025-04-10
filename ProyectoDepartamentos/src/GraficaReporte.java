@@ -41,7 +41,7 @@ public class GraficaReporte {
                 GROUP BY 
                     Articulos.Id, Articulos.Nombre
                 HAVING
-                	SUM(ArticulosPedidos.cantidad) > 100
+                	SUM(ArticulosPedidos.cantidad) >= 100
                 ORDER BY 
                     Cantidad DESC;
             """;
